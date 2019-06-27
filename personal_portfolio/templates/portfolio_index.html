@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+    <div class="container">
+        <div class="section-heading">
+            <h3 class="title is-2">Portfolio</h3>
+            <br>
+        </div>
+        <div class="container">
+            <div class="columns">
+                {% for project in projects %}
+                <div class="column is-4">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">{{ project.title }}</p>
+                        </header>
+                        <div class="card-content">
+                            <figure class="image">
+                                <img src="{{ project.image.url }}" alt="Imagem projeto">
+                            </figure>
+                        </div>
+                        <footer class="card-footer">
+                            <a href="{% url 'project_detail' project.pk %}" class="card-footer-item">Ver</a>
+                            <a href="" class="card-footer-item">Código-fonte</a>
+                        </footer>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

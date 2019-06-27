@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+    <div class="container">
+        <div class="section-heading has-text-centered">
+            <h3 class="title is-2 ">{{ post.title}}</h3>
+            <h4 class="subtitle">
+                {{ post.created_on.date }} |&nbsp;
+                Categorias:&nbsp;
+                {% for category in post.categories.all %}
+                <a href="{% url 'blog_category' category.name %}">
+                    {{ category.name }}
+                </a>&nbsp;
+                {% endfor %}
+            </h4>
+            <br>
+        </div>
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8 is-offset-2">
+                    <article class="content">
+                        <p>{{ post.body | linebreaks }}</p>
+                    </article> 
+                    <h3 class="subtitle is-4 has-text-centered">Deixe um comentário:</h3>
+                    <form action="/blog/{{ post.pk }}/" method="POST">
+                        {% csrf_token %}
+                        <div class="field">
+                            <div class="control">
+                                {{ form.author }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                {{ form.body }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button is-primary">Comentar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <h3 class="subtitle is-4 has-text-centered">Comentários:</h3>
+                    {% for comment in comments %}
+                    <article class="media box">
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    <strong>{{ comment.author }}</strong>
+                                    <small>{{ comment.created_on.date}}</small>
+                                    <br>
+                                    {{ comment.body }}
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+{% endblock %}
