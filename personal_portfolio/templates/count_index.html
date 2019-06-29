@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+    <div class="container">
+        <div class="section-heading has-text-centered">
+            <h3 class="title is-2">Contador de palavras</h3>
+            <br>
+        </div>
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8 is-offset-2">
+                    <form action="/count/" method="POST">
+                        {% csrf_token %}
+                        <div class="field">
+                            <div class="control">
+                                {{ form.body }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button class="button is-primary">
+                                    Contar palavras
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

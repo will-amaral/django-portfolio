@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+    <div class="container">
+        <div class="section-heading has-text-centered">
+            <h3 class="title is-2">Contador de palavras</h3>
+            <br>
+        </div>
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8 is-offset-2">
+                    <article class="content">
+                        <h4 class="subtitle is-4">Texto original</h4>
+                        <p>{{ text }}</p>
+                        <h4 class="subtitle is-4">Número de Palavras únicas</h4>
+                        <p>{{ numWords }}</p>
+                        <h4 class="subtitle is-4">Frequência de Palavras</h4>
+                        <ul>
+                            {% for key, value in wordList.items %}
+                            <li>"{{ key }}" : {{ value }}</li>
+                            {% endfor %}
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
