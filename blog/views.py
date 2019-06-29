@@ -34,6 +34,7 @@ def blog_detail(request, pk):
                 post=post
             )
             comment.save()
+            form = CommentForm()
 
     comments = Comment.objects.filter(post=post)
     context = {
